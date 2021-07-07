@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 
 /**
+ * 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
  * @author 侯程月
  * @date 13:48
  * description：检查更新管理类
