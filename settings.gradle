@@ -1,0 +1,3 @@
+rootProject.name = "AiraDownload"
+include ':app'
+include ':updata'
