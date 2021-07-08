@@ -17,10 +17,13 @@ import java.io.File
  * @date 13:48
  * description：检查更新管理类
  */
-object UpadataManager {
+object UpgradeManager {
 
     /**
      * 下载Apk
+     * @param apkUrl 包网络地址
+     * @param localPath 本地缓存地址
+     * @param res 下载结果 @link DownloadRes
      */
     fun downloadApk(apkUrl: String, localPath: String, res: DownloadRes) {
         Holder.instance.apply {

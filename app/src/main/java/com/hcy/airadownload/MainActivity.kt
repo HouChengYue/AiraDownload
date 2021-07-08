@@ -13,7 +13,7 @@ import androidx.core.app.ActivityCompat
 import com.hcy.airadownload.databinding.ActivityMainBinding
 import com.hcy.updata.DownloadRes
 import com.hcy.updata.FileUtils
-import com.hcy.updata.UpadataManager
+import com.hcy.updata.UpgradeManager
 import java.io.File
 import java.util.jar.*
 
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     )
                     if (checkSelfPermission == PackageManager.PERMISSION_GRANTED) {
-                        UpadataManager.downloadApk(
+                        UpgradeManager.downloadApk(
                             "http://192.168.3.199:8071/apk/Salesman_debug_0305_(61)_1614927730692.apk",
                             "${FileUtils.getCacheFile(application).absolutePath}/update.apk",
                             DownloadRes(onSuccsee = { file ->
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 } else {
                     log("暂停")
-                    UpadataManager.stop()
+                    UpgradeManager.stop()
                 }
 
 
