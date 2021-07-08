@@ -11,10 +11,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.hcy.airadownload.databinding.ActivityMainBinding
-import com.hcy.updata.DownloadRes
-import com.hcy.updata.FileUtils
-import com.hcy.updata.UpgradeManager
+import com.hcy.upgrade.DownloadRes
+import com.hcy.upgrade.FileUtils
+import com.hcy.upgrade.UpgradeManager
 import java.io.File
+import java.text.SimpleDateFormat
 import java.util.jar.*
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +28,15 @@ class MainActivity : AppCompatActivity() {
         init()
     }
 
-    var actionTime = 0
+
+    @SuppressLint("SimpleDateFormat")
+    fun getTime():String{
+        val currentTimeMillis = System.currentTimeMillis()
+        return SimpleDateFormat("yyyy.MM.dd HH:mm:SS").format(currentTimeMillis)
+    }
+
+    var mProgress = 0
+    var isIng = false
     var sb = StringBuilder("")
     var file: File? = null
 
@@ -36,9 +45,13 @@ class MainActivity : AppCompatActivity() {
         mBinding.apply {
             tvTitle.text = "下载文件名"
             btnAction.setOnClickListener {
-                actionTime++
-                if (actionTime % 2 == 1) {
-                    log("开始")
+
+                if (!isIng) {
+                    if (mProgress == 0) {
+                        log("开始")
+                    }else{
+                        log("继续")
+                    }
                     ActivityCompat.requestPermissions(
                         this@MainActivity,
                         arrayOf(
@@ -84,6 +97,7 @@ class MainActivity : AppCompatActivity() {
             btnClear.setOnClickListener {
                 file?.run {
                     if (exists()) {
+                        mProgress = 0
                         delete()
                         log("清除")
                     }
@@ -95,6 +109,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun log(msg: String) {
+        sb.append("${getTime()}\n")
         sb.append("${msg}\n")
         Handler(Looper.getMainLooper()).post {
             mBinding.tvLog.text = sb.toString()

@@ -1,4 +1,4 @@
-package com.hcy.updata
+package com.hcy.upgrade
 
 import org.junit.Test
 

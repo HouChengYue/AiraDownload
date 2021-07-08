@@ -1,4 +1,4 @@
-package com.hcy.updata
+package com.hcy.upgrade
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

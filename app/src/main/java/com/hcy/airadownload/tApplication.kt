@@ -1,7 +1,7 @@
 package com.hcy.airadownload
 
 import android.app.Application
-import com.hcy.updata.UpgradeManager
+import com.hcy.upgrade.UpgradeManager
 
 /**
  * @author 侯程月

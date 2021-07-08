@@ -1,4 +1,4 @@
-package com.hcy.updata
+package com.hcy.upgrade
 
 import android.content.Context
 import android.content.pm.ApplicationInfo

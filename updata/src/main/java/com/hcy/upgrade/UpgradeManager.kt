@@ -1,4 +1,4 @@
-package com.hcy.updata
+package com.hcy.upgrade
 
 import android.app.Application
 import android.util.Log
@@ -111,6 +111,7 @@ class Holder : DownloadTaskListener {
                                 if (checkRes) {
                                     GlobalScope.launch {
                                         with(Dispatchers.Main) {
+                                            mRes.onProcess.invoke(100)
                                             mRes.onSuccsee.invoke(file)
                                         }
                                     }
@@ -185,6 +186,7 @@ class Holder : DownloadTaskListener {
     }
 
     override fun onTaskComplete(task: DownloadTask?) {
+        mRes.onProcess.invoke(100)
         mRes.onSuccsee.invoke(File(mLocalPath))
     }
 
