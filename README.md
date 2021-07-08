@@ -46,6 +46,6 @@ override fun onCreate() {
      * @param localPath 本地缓存地址
      * @param res 下载结果 @link DownloadRes
      */
-   UpadataManager.downloadApk(apkUrl: String, localPath: String, res: DownloadRes)
-   UpadataManager.stop() 暂停下载 UpadataManager.downloadApk可以继续下载
+   UpgradeManager.downloadApk(apkUrl: String, localPath: String, res: DownloadRes)
+   UpgradeManager.stop() 暂停下载 UpadataManager.downloadApk可以继续下载
  ~~~
