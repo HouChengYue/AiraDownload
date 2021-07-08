@@ -14,7 +14,7 @@
   Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.HouChengYue:AiraDownload:Tag'
+	         implementation 'com.github.HouChengYue:AiraDownload:v1.0.1'
 	}
 ## 使用
 ### 第一步：在Application 中 初始化
