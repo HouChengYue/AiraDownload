@@ -111,7 +111,7 @@ class Holder : DownloadTaskListener {
                                 if (checkRes) {
                                     GlobalScope.launch {
                                         with(Dispatchers.Main) {
-                                            mRes.onProcess.invoke(100)
+                                            mRes.onProcess.invoke(100,null)
                                             mRes.onSuccsee.invoke(file)
                                         }
                                     }
@@ -186,13 +186,13 @@ class Holder : DownloadTaskListener {
     }
 
     override fun onTaskComplete(task: DownloadTask?) {
-        mRes.onProcess.invoke(100)
+        mRes.onProcess.invoke(100,task)
         mRes.onSuccsee.invoke(File(mLocalPath))
     }
 
     override fun onTaskRunning(task: DownloadTask?) {
         progress = task?.percent ?: 0
-        mRes.onProcess.invoke(progress)
+        mRes.onProcess.invoke(progress,task)
         Log.e(TAG, "onTaskRunning: progress${progress}")
     }
 

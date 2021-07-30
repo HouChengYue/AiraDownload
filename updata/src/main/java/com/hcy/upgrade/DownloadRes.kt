@@ -1,5 +1,7 @@
 package com.hcy.upgrade
 
+import com.arialyy.aria.core.download.DownloadEntity
+import com.arialyy.aria.core.task.DownloadTask
 import java.io.File
 
 /**
@@ -10,5 +12,5 @@ import java.io.File
 class DownloadRes(
     val onSuccsee: (file: File) -> Unit,
     val onFail: (msg: String) -> Unit,
-    val onProcess: (progress: Int) -> Unit
+    val onProcess: (progress: Int,task: DownloadTask?) -> Unit
 )

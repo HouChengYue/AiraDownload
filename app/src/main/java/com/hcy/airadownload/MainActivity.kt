@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
 
     @SuppressLint("SimpleDateFormat")
-    fun getTime():String{
+    fun getTime(): String {
         val currentTimeMillis = System.currentTimeMillis()
         return SimpleDateFormat("yyyy.MM.dd HH:mm:SS").format(currentTimeMillis)
     }
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 if (!isIng) {
                     if (mProgress == 0) {
                         log("开始")
-                    }else{
+                    } else {
                         log("继续")
                     }
                     ActivityCompat.requestPermissions(
@@ -67,15 +67,16 @@ class MainActivity : AppCompatActivity() {
                         UpgradeManager.downloadApk(
                             "http://192.168.3.199:8071/apk/Salesman_debug_0305_(61)_1614927730692.apk",
                             "${FileUtils.getCacheFile(application).absolutePath}/update.apk",
-                            DownloadRes(onSuccsee = { file ->
-                                this@MainActivity.file = file
-                                log("下载完成File${file.absoluteFile}")
-                            },
+                            DownloadRes(
+                                onSuccsee = { file ->
+                                    this@MainActivity.file = file
+                                    log("下载完成File${file.absoluteFile}")
+                                },
                                 onFail = {
                                     Toast.makeText(this@MainActivity, it, Toast.LENGTH_SHORT).show()
                                     log("失败！${it}")
                                 },
-                                onProcess = { progress ->
+                                onProcess = { progress, _ ->
                                     try {
                                         Handler(mainLooper).post {
                                             pbMain.progress = progress
@@ -84,7 +85,8 @@ class MainActivity : AppCompatActivity() {
                                         }
                                     } catch (e: Exception) {
                                     }
-                                })
+                                }
+                            )
                         )
                     }
                 } else {
