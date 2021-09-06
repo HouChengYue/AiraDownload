@@ -1,5 +1,6 @@
 # AiraDownload
 [![](https://jitpack.io/v/HouChengYue/AiraDownload.svg)](https://jitpack.io/#HouChengYue/AiraDownload)
+
 # 用于下载apk安装包的插件
 ## 添加
    Step 1. Add the JitPack repository to your build file
@@ -14,7 +15,7 @@
   Step 2. Add the dependency
 
 	dependencies {
-	         implementation 'com.github.HouChengYue:AiraDownload:v1.0.1'
+	         implementation 'com.github.HouChengYue:AiraDownload:v1.0.3'
 	}
 ## 使用
 ### 第一步：在Application 中 初始化
