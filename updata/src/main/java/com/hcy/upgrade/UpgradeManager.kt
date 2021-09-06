@@ -5,10 +5,12 @@ import android.util.Log
 import com.arialyy.aria.core.Aria
 import com.arialyy.aria.core.download.DownloadEntity
 import com.arialyy.aria.core.download.DownloadTaskListener
+import com.arialyy.aria.core.inf.TaskSchedulerType.TYPE_CANCEL_AND_NOT_NOTIFY
 import com.arialyy.aria.core.task.DownloadTask
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
 
 /**
@@ -78,7 +80,7 @@ class Holder : DownloadTaskListener {
 
     private fun dealTask(task: DownloadEntity?) {
         GlobalScope.launch {
-            with(Dispatchers.IO) {
+            withContext(Dispatchers.IO) {
                 val creatNewTask = {
                     File(mLocalPath).apply {
                         delete()
@@ -86,8 +88,8 @@ class Holder : DownloadTaskListener {
                     }
                     taskId = Aria.download(this@Holder)
                         .load(mApkUrl)
-                        .ignoreFilePathOccupy()
-                        .setFilePath(mLocalPath, true)
+                        .setFilePath(mLocalPath)
+//                        .ignoreFilePathOccupy()
                         .create()
                 }
                 if (task == null) {
@@ -96,7 +98,7 @@ class Holder : DownloadTaskListener {
                     if (checkRes) {
                         mRes.onSuccsee.invoke(File(mLocalPath))
                     } else {
-                        creatNewTask.invoke()
+                        creatNewTask()
                     }
 
                 } else {
@@ -116,7 +118,7 @@ class Holder : DownloadTaskListener {
                                         }
                                     }
                                 } else {
-                                    creatNewTask.invoke()
+                                    creatNewTask()
                                 }
                             }
                         } else {
@@ -126,9 +128,9 @@ class Holder : DownloadTaskListener {
                             when (state) {
                                 0 -> {
 //                                    Aria.download(this).load(id).cancel();
-                                    creatNewTask.invoke()
+                                    creatNewTask()
                                 }
-                                2, 3, 5, 6, 7 -> {
+                                2, 3, 5, 6,7 -> {
                                     taskId = id
                                     Aria.download(this).load(id).resume()
                                 }
@@ -181,6 +183,7 @@ class Holder : DownloadTaskListener {
 
     val TAG = "TAG"
     override fun onTaskFail(task: DownloadTask?, e: Exception?) {
+        task?.cancel(TYPE_CANCEL_AND_NOT_NOTIFY)
         mRes.onFail.invoke(e?.message ?: "下载失败！")
         Log.e(TAG, "onTaskFail: ${e?.message}")
     }
