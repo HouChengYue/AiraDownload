@@ -1,5 +1,6 @@
 # AiraDownload
 [![](https://jitpack.io/v/HouChengYue/AiraDownload.svg)](https://jitpack.io/#HouChengYue/AiraDownload)
+[![](https://jitpack.io/v/HouChengYue/AiraDownload.svg)](https://jitpack.io/#HouChengYue/AiraDownload)
 # 用于下载apk安装包的插件
 ## 添加
    Step 1. Add the JitPack repository to your build file
