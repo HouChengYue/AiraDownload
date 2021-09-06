@@ -15,7 +15,7 @@
   Step 2. Add the dependency
 
 	dependencies {
-	         implementation 'com.github.HouChengYue:AiraDownload:v1.0.1'
+	         implementation 'com.github.HouChengYue:AiraDownload:v1.0.3'
 	}
 ## 使用
 ### 第一步：在Application 中 初始化
